@@ -1,7 +1,7 @@
 # ZainCash Integration API Laravel Package
 
 <p>
-<img src="example/sturcture_zaincash_package.svg">
+<img src="example/sturcture_zaincash_package.png">
 </p>
 
 This is a Laravel package to integrate ZainCash payment gateway API. For local financial transactions in Iraqi dinars inside Iraq. This package is based on the official ZainCash API documentation. You can find the official documentation [(https://docs.zaincash.iq)](https://docs.zaincash.iq).
