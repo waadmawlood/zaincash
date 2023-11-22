@@ -1,0 +1,51 @@
+{
+    "name": "waad/zaincash",
+    "description": "ZainCash payment Integration Gateway package API laravel",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "Waad Mawlood",
+        "ZainCash",
+        "Zain Cash",
+        "payment Integration",
+        "payment Gateway",
+        "Iraqi Dinar",
+        "Zain Cash Laravel",
+        "ZainCash Laravel",
+        "Laravel Zain Cash",
+        "Laravel ZainCash"
+    ],
+    "authors": [
+        {
+            "name": "Waad Mawlood",
+            "email": "waad_mawlood@outlook.com",
+            "homepage": "https://waad.netlify.app",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "guzzlehttp/guzzle": "^6.3.0|^7.0.1",
+        "laravel/framework": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Waad\\ZainCash\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Waad\\ZainCash\\ZainCashServiceProvider"
+            ],
+            "aliases": {
+                "ZainCash": "Waad\\ZainCash\\Facades\\ZainCash"
+            }
+        }
+    }
+}
