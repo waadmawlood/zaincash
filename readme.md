@@ -15,7 +15,6 @@ This is a Laravel package to integrate ZainCash payment gateway API. For local f
 ## 🎀 Requirements
 | Package Version | Laravel Version | PHP Version  |
 |-----------------|-----------------|--------------|
-| 5.5.x           | 5.5.x           | 7.0+         |
 | 6.x             | 6.x             | 7.2+         |
 | 7.x             | 7.x             | 7.2.5+       |
 | 8.x             | 8.x             | 7.3+ \| 8.0+ |
