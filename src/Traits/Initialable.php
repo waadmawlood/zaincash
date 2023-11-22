@@ -46,10 +46,17 @@ trait Initialable
             $this->setIsRedirect($this->getConfig("is_redirect"));
         }
 
+        $this->initailUrls();
+    }
+
+    protected function initailUrls(bool $force = false)
+    {
         // Set the base URL.
-        if ($this->getIsTest()) {
+        if (($this->getIsTest() && blank($this->getBaseUrl())) || ($this->getIsTest() && $force)) {
             $this->setBaseUrl($this->getConfig("test_url"));
-        } else {
+        } 
+        
+        if ((!$this->getIsTest() && blank($this->getBaseUrl())) || (!$this->getIsTest() && $force)) {
             $this->setBaseUrl($this->getConfig("live_url"));
         }
 
@@ -59,12 +66,12 @@ trait Initialable
         }
 
         // Set the URLs.
-        $this->setTUrl($this->getBaseUrl() . "transaction/init");
-        $this->setCUrl($this->getBaseUrl() . "transaction/get");
-        $this->setRUrl($this->getBaseUrl() . "transaction/pay?id=");
-        $this->setProcessingUrl($this->getBaseUrl() . "transaction/processing");
-        $this->setProcessingOtpUrl($this->getBaseUrl() . "transaction/processingOTP?type=MERCHANT_PAYMENT");
-        $this->setCancelUrl($this->getBaseUrl() . "transaction/cancel");
+        if ($force || blank($this->getTUrl())) $this->setTUrl($this->getBaseUrl() . "transaction/init");
+        if ($force || blank($this->getCUrl())) $this->setCUrl($this->getBaseUrl() . "transaction/get");
+        if ($force || blank($this->getRUrl())) $this->setRUrl($this->getBaseUrl() . "transaction/pay?id=");
+        if ($force || blank($this->getProcessingUrl())) $this->setProcessingUrl($this->getBaseUrl() . "transaction/processing");
+        if ($force || blank($this->getProcessingOtpUrl())) $this->setProcessingOtpUrl($this->getBaseUrl() . "transaction/processingOTP?type=MERCHANT_PAYMENT");
+        if ($force || blank($this->getCancelUrl())) $this->setCancelUrl($this->getBaseUrl() . "transaction/cancel");
     }
 
     /**

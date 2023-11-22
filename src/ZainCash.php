@@ -2,7 +2,7 @@
 
 namespace Waad\ZainCash;
 
-use Illuminate\Http\Client\RequestException;
+use GuzzleHttp\Exception\RequestException;
 use Waad\ZainCash\Traits\Makeable;
 
 class ZainCash extends BaseZainCash
@@ -35,7 +35,7 @@ class ZainCash extends BaseZainCash
 
         // Check if the response is not 200
         if ($response->getStatusCode() !== 200) {
-            throw new RequestException($response);
+            throw RequestException::create($response);
         }
 
         // Parse the response to Object StdClass
@@ -73,7 +73,7 @@ class ZainCash extends BaseZainCash
 
         // Check if the response is not success
         if ($response->getStatusCode() !== 200) {
-            throw new RequestException($response);
+            throw RequestException::create($response);
         }
 
         // Parse the response to Object StdClass or Array
@@ -107,7 +107,7 @@ class ZainCash extends BaseZainCash
 
         // Check if the response is not success
         if ($response->getStatusCode() !== 200) {
-            throw new RequestException($response);
+            throw RequestException::create($response);
         }
 
         // Parse the response to Object StdClass or Array
@@ -142,7 +142,7 @@ class ZainCash extends BaseZainCash
 
         // Check if the response is not success
         if ($response->getStatusCode() !== 200) {
-            throw new RequestException($response);
+            throw RequestException::create($response);
         }
 
         // Parse the response to Object StdClass or Array
@@ -170,7 +170,7 @@ class ZainCash extends BaseZainCash
 
         // Check if the response is not success
         if ($response->getStatusCode() !== 200) {
-            throw new RequestException($response);
+            throw RequestException::create($response);
         }
 
         // Parse the response to Object StdClass or Array

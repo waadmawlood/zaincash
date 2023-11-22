@@ -3,7 +3,7 @@
 namespace Waad\ZainCash\Services;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Client\RequestException;
+use GuzzleHttp\Exception\RequestException;
 
 class HttpClient
 {
@@ -11,7 +11,7 @@ class HttpClient
      * @param string $url
      * @param array $data
      * @param array $headers
-     * @return \Psr\Http\Message\ResponseInterface|\Illuminate\Http\Client\Response|array
+     * @return \Psr\Http\Message\ResponseInterface|array
      */
     public function httpPost(string $url, array $data = [], array $headers = [])
     {
@@ -28,7 +28,7 @@ class HttpClient
         } catch (RequestException $e) {
             return [
                 'error' => $e->getMessage(),
-                'status' => $e->response->status(),
+                'status' => $e->getResponse()->getStatusCode(),
             ];
         }
     }
