@@ -561,12 +561,15 @@ Response Example dependent by success:
 
 # 🧔 Author
 
-<div style="width:300px;">
+<div>
 <p>
-<a href="https://zaincash.iq" target="_blank"><img src="example/waad_logo.svg" style="border: 1px solid orange"></a>
+<a href="https://zaincash.iq" target="_blank"><img src="example/waad_logo.svg" width="300" style="border: 1px solid orange"></a>
 </p>
-<p align="center">
-<a href="mailto:waad_mawlood@outlook.com">Waad Mawlood</a>
+<p>
+Author: <a href="mailto:waad_mawlood@outlook.com">Waad Mawlood</a>
+</p>
+<p>
+Email: <a href="mailto:waad_mawlood@outlook.com">waad_mawlood@outlook.com</a>
 </p>
 </div>
 
