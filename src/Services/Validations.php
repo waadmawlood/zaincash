@@ -16,9 +16,8 @@ class Validations
      * @param string $orderId
      * @param string|null $lang
      * @param float|null $minAmount
-     * @return mixed
      */
-    public function validator($amount, $msisdn, $serviceType, $orderId, $lang = null, $minAmount = null)
+    public function validator($amount, $msisdn, $serviceType, $orderId, $lang = null, $minAmount = null): mixed
     {
 
         $this->lang = $lang;
@@ -43,7 +42,7 @@ class Validations
         return $this->prepareOutput(false);
     }
 
-    private function validationRules()
+    private function validationRules(): array
     {
         return [
             "amount" => ["required", "numeric", "min:{$this->minAmount}"],
@@ -53,7 +52,7 @@ class Validations
         ];
     }
 
-    private function validationMessages()
+    private function validationMessages(): array
     {
         return [
             "amount.required" => trans('zaincash::zaincash.amount_required', [], $this->lang),
@@ -67,7 +66,7 @@ class Validations
         ];
     }
 
-    private function prepareOutput(bool $isError, string $message = "Successfull")
+    private function prepareOutput(bool $isError, string $message = "Successfull"): mixed
     {
         return json_decode(json_encode(["error" => $isError, "message" => $message]), false);
     }

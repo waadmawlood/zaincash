@@ -15,10 +15,7 @@ trait HttpClientRequests
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
                 $this->getTUrl(),
-                $body,
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                $body
             );
     }
 
@@ -32,10 +29,7 @@ trait HttpClientRequests
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
                 $this->getCUrl(),
-                $body,
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                $body
             );
     }
 
@@ -53,9 +47,6 @@ trait HttpClientRequests
                     'id' => $this->getTransactionID(),
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
-                ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
                 ]
             );
     }
@@ -76,9 +67,6 @@ trait HttpClientRequests
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
                     'otp' => $otp,
-                ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
                 ]
             );
     }
@@ -94,9 +82,6 @@ trait HttpClientRequests
                 [
                     'id' => $this->getTransactionID(),
                     'type' => 'MERCHANT_PAYMENT'
-                ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
                 ]
             );
     }

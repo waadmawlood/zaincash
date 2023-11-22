@@ -5,11 +5,9 @@ namespace Waad\ZainCash\Traits;
 trait Initialable
 {
     /**
-     * @param bool|null $checkTransaction
      * @throws \Exception
-     * @return void
      */
-    protected function initial()
+    protected function initial(): void
     {
         // Set the isTest
         if (is_null($this->getIsTest())) {
@@ -50,7 +48,7 @@ trait Initialable
         $this->initailUrls();
     }
 
-    protected function initailUrls(bool $force = false)
+    protected function initailUrls(bool $force = false): void
     {
         // Set the base URL.
         if (($this->getIsTest() && blank($this->getBaseUrl())) || ($this->getIsTest() && $force)) {
@@ -79,9 +77,8 @@ trait Initialable
      * Validation Create Request
      *
      * @throws \Exception
-     * @return void
      */
-    public function validationCreateRequest()
+    public function validationCreateRequest(): void
     {
         $validator = app(\Waad\ZainCash\Services\Validations::class)->validator(
             $this->getAmount(),
@@ -100,12 +97,9 @@ trait Initialable
     /**
      * Validation Processing Step
      *
-     * @param string $phonenumber
-     * @param string $pin
      * @throws \Exception
-     * @return void
      */
-    public function validationProcessing(string $phonenumber, string $pin)
+    public function validationProcessing(string $phonenumber, string $pin): void
     {
         $validator = app(\Waad\ZainCash\Services\ValidationProcessing::class)->validator(
             $this->getTransactionID(),
@@ -122,13 +116,9 @@ trait Initialable
     /**
      * Validation Processing OTP Step
      *
-     * @param string $phonenumber
-     * @param string $pin
-     * @param string $otp
      * @throws \Exception
-     * @return void
      */
-    public function validationProcessingOtp(string $phonenumber, string $pin, string $otp)
+    public function validationProcessingOtp(string $phonenumber, string $pin, string $otp): void
     {
         $validator = app(\Waad\ZainCash\Services\ValidationProcessingOtp::class)->validator(
             $this->getTransactionID(),

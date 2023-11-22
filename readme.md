@@ -347,6 +347,14 @@ Response Example dependent by status:
   },
   ...
   "status": "completed", // <--- status completed after complete (Payment)
+  "sofOwnerId": 18482,
+    "traveldiscount": "1000",
+    "from": "9647802999569",
+    "onCustomerFees": "50000000",
+    "onMerchantFees": "0",
+    "totalFees": 500,
+    "operationDate": "2023-11-22T18:23:52.270Z",
+    "operationId": "1173300",
   ...
 }
 *****************************************
