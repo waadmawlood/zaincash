@@ -145,6 +145,7 @@ trait getSetAttributes
     public function setIsTest($isTest)
     {
         $this->isTest = $isTest;
+        $this->initailUrls(true);
         return $this;
     }
 
