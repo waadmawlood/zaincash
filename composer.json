@@ -46,6 +46,5 @@
                 "ZainCash": "Waad\\ZainCash\\Facades\\ZainCash"
             }
         }
-    },
-    "version": "8.0.0"
+    }
 }
