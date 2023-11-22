@@ -423,7 +423,6 @@ $processingDetails = $zainCashPayment->processingTransaction("9647802999569", '1
 Response Example dependent by success:
 
 ```json
-response
 {
   "success": 1,
   "transactionid": "655883cd0227c4d2ec58f712",
