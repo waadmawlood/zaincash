@@ -46,6 +46,16 @@ trait Initialable
             $this->setIsRedirect($this->getConfig("is_redirect"));
         }
 
+        // Set the timeout request.
+        if (is_null($this->getTimeout())) {
+            $this->setTimeout($this->getConfig("timeout"));
+        }
+
+        // Set the verify SSL.
+        if (is_null($this->getVerifySsl())) {
+            $this->setVerifySsl($this->getConfig("verify_ssl"));
+        }
+
         $this->initailUrls();
     }
 
