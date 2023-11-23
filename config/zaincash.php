@@ -104,4 +104,16 @@ return [
     | The default value is 10 seconds.
     */
     'timeout' => env('ZAINCASH_TIMEOUT', 10),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Verify SSL
+    |--------------------------------------------------------------------------
+    |
+    | Set the verify SSL for the request to ZainCash's API.
+    | The default value is true.
+    | make it false for disable verify SSL (not recommended).
+    | if it is true and you used the `http` protocol so will get an error. so make it false.
+    */
+    'verify_ssl' => env('ZAINCASH_VERIFY_SSL', true),
 ];
