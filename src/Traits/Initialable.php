@@ -51,6 +51,11 @@ trait Initialable
             $this->setTimeout($this->getConfig("timeout"));
         }
 
+        // Set the verify SSL.
+        if (is_null($this->getVerifySsl())) {
+            $this->setVerifySsl($this->getConfig("verify_ssl"));
+        }
+
         // Set the URLs.
         $this->initailUrls();
     }

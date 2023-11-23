@@ -11,9 +11,11 @@ class HttpClient
      * @param string $url
      * @param array $data
      * @param array $headers
+     * @param int $timeout
+     * @param bool $verify
      * @return \Psr\Http\Message\ResponseInterface|\Illuminate\Http\Client\Response|array
      */
-    public function httpPost(string $url, array $data = [], array $headers = [], int $timeout = 10)
+    public function httpPost(string $url, array $data = [], array $headers = [], int $timeout = 10, bool $verify = false)
     {
         set_time_limit($timeout);
 
@@ -21,6 +23,7 @@ class HttpClient
 
             $client = new Client([
                 'timeout' => $timeout,
+                'verify' => $verify,
             ]);
 
             $response = $client->post($url, [

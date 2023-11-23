@@ -32,6 +32,7 @@ abstract class BaseZainCash
     protected $transactionID;
     protected $isReturnArray = false;
     protected $timeout;
+    protected $verifySsl;
 
     public function __construct(
         $amount = null,
@@ -43,7 +44,8 @@ abstract class BaseZainCash
         $isTest = null,
         $language = null,
         $baseUrl = null,
-        $timeout = null
+        $timeout = null,
+        $verifySsl = null
     ) {
         $this->amount = $amount;
         $this->serviceType = $serviceType;
@@ -59,6 +61,7 @@ abstract class BaseZainCash
         $this->language = $language;
         $this->baseUrl = $baseUrl;
         $this->timeout = $timeout;
+        $this->verifySsl = $verifySsl;
 
         $this->initial();
     }
