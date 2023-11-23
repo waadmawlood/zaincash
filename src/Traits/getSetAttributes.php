@@ -346,4 +346,40 @@ trait getSetAttributes
         $this->isReturnArray = $isReturnArray;
         return $this;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * @param int $timeout
+     * @return self
+     */
+    public function setTimeout(int $timeout)
+    {
+        $this->timeout = $timeout;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getVerifySsl()
+    {
+        return $this->verifySsl;
+    }
+
+    /**
+     * @param bool $verifySsl 
+     * @return self
+     */
+    public function setVerifySsl(bool $verifySsl)
+    {
+        $this->verifySsl = $verifySsl;
+        return $this;
+    }
 }
