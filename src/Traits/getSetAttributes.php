@@ -226,4 +226,15 @@ trait getSetAttributes
         $this->timeout = $timeout;
         return $this;
     }
+
+    public function getVerifySsl(): bool|null
+    {
+        return $this->verifySsl;
+    }
+
+    public function setVerifySsl(bool $verifySsl): self
+    {
+        $this->verifySsl = $verifySsl;
+        return $this;
+    }
 }

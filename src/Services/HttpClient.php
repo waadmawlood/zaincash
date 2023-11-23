@@ -10,12 +10,12 @@ class HttpClient
     /**
      * @return \Psr\Http\Message\ResponseInterface|\Illuminate\Http\Client\Response|array
      */
-    public function httpPost(string $url, array $data = [], array $headers = [], $timeout = 10): mixed
+    public function httpPost(string $url, array $data = [], array $headers = [], int $timeout = 10, bool $verify = false): mixed
     {
         set_time_limit($timeout);
         
         try {
-            $response = Http::timeout($timeout)->withHeaders($headers)->asForm()->post($url, $data);
+            $response = Http::timeout($timeout)->withHeaders($headers)->withOptions(['verify' => $verify])->asForm()->post($url, $data);
             return $response;
         } catch (RequestException $e) {
             return [
