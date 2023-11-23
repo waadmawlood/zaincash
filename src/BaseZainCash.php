@@ -31,6 +31,7 @@ abstract class BaseZainCash
     protected $cancelUrl;
     protected $transactionID;
     protected $isReturnArray = false;
+    protected $timeout;
 
     public function __construct(
         $amount = null,
@@ -41,12 +42,13 @@ abstract class BaseZainCash
         $merchantId = null,
         $isTest = null,
         $language = null,
-        $baseUrl = null
+        $baseUrl = null,
+        $timeout = null
     ) {
         $this->amount = $amount;
         $this->serviceType = $serviceType;
 
-        if($orderId) {
+        if ($orderId) {
             $this->orderId = $this->getConfig("prefix_order_id") . $orderId;
         }
 
@@ -56,6 +58,7 @@ abstract class BaseZainCash
         $this->isTest = $isTest;
         $this->language = $language;
         $this->baseUrl = $baseUrl;
+        $this->timeout = $timeout;
 
         $this->initial();
     }

@@ -346,4 +346,22 @@ trait getSetAttributes
         $this->isReturnArray = $isReturnArray;
         return $this;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * @param int $timeout
+     * @return self
+     */
+    public function setTimeout(int $timeout)
+    {
+        $this->timeout = $timeout;
+        return $this;
+    }
 }

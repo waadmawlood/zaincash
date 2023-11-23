@@ -18,7 +18,8 @@ trait HttpClientRequests
                 $body,
                 [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                ],
+                $this->getTimeout()
             );
     }
 
@@ -35,7 +36,8 @@ trait HttpClientRequests
                 $body,
                 [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                ],
+                $this->getTimeout()
             );
     }
 
@@ -56,7 +58,8 @@ trait HttpClientRequests
                 ],
                 [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                ],
+                $this->getTimeout()
             );
     }
 
@@ -79,7 +82,8 @@ trait HttpClientRequests
                 ],
                 [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                ],
+                $this->getTimeout()
             );
     }
 
@@ -97,7 +101,8 @@ trait HttpClientRequests
                 ],
                 [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                ],
+                $this->getTimeout()
             );
     }
 }

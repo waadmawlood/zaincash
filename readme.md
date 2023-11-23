@@ -68,6 +68,7 @@ update config zaincash in `config/zaincash.php` or from `.env` file
 | prefix_order_id       | string | wa3d_ | Prefix for the order ID. |
 | is_redirect           | bool   | false   | Specify whether or not to redirect to the ZainCash payment page. If false, ZainCash returns a Transaction ID to the backend. If true, redirection after the request. |
 | min_amount            | int    | 1000  | Set the minimum amount for a valid transaction in Iraqi Dinar (IQD). Transactions with amounts less than this value will be considered invalid.  |
+| timeout | int | 10 | Set the timeout for the request in seconds. |
 
 
 <br>
@@ -84,6 +85,7 @@ ZAINCASH_IS_REDIRECT=false                     # optional default false
 ZAINCASH_MIN_AMOUNT=1000                       # optional default 1000
 ZAINCASH_TEST_URL=https://test.zaincash.iq/    # optional
 ZAINCASH_LIVE_URL=https://api.zaincash.iq/     # optional
+ZAINCASH_TIMEOUT=10                            # optional
 ```
 
 
@@ -210,6 +212,7 @@ class PaymentController extends Controller
 | processingUrl     |🔴| string-null      | `getProcessingUrl()`                  | `setProcessingUrl($processingUrl)`     | -        |
 | processingOtpUrl  |🔴| string-null      | `getProcessingOtpUrl()`               | `setProcessingOtpUrl($processingOtpUrl)` | -      |
 | cancelUrl         |🔴| string-null      | `getCancelUrl()`                      | `setCancelUrl($cancelUrl)`             | -        |
+| timeout           |🔴| int-null         | `getTimeout()`                        | `setTimeout($timeout)`                 | -        |
 
 ⚠️ `Important` column means that this attribute is constantly used and has no default value. On the contrary, we can change it, but it will take the default value from `config/zaincash.php`.
 
