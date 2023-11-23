@@ -215,4 +215,15 @@ trait getSetAttributes
         $this->isReturnArray = $isReturnArray;
         return $this;
     }
+
+    public function getTimeout(): int|null
+    {
+        return $this->timeout;
+    }
+
+    public function setTimeout(int $timeout): self
+    {
+        $this->timeout = $timeout;
+        return $this;
+    }
 }

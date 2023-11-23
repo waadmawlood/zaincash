@@ -44,6 +44,11 @@ trait Initialable
             $this->setIsRedirect($this->getConfig("is_redirect"));
         }
 
+        // Set the timeout request.
+        if (is_null($this->getTimeout())) {
+            $this->setTimeout($this->getConfig("timeout"));
+        }
+
         // Set the URLs.
         $this->initailUrls();
     }

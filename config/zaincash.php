@@ -95,4 +95,13 @@ return [
     */
     'min_amount' => env('ZAINCASH_MIN_AMOUNT', 1000),
 
+    /*
+    |--------------------------------------------------------------------------
+    | timeout Request (in seconds)
+    |--------------------------------------------------------------------------
+    |
+    | Set the timeout for the request to ZainCash's API.
+    | The default value is 10 seconds.
+    */
+    'timeout' => env('ZAINCASH_TIMEOUT', 10),
 ];

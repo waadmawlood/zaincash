@@ -14,8 +14,9 @@ trait HttpClientRequests
 
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getTUrl(),
-                $body
+                url: $this->getTUrl(),
+                data: $body,
+                timeout: $this->getTimeout()
             );
     }
 
@@ -28,8 +29,9 @@ trait HttpClientRequests
         $body = $this->bodyPostRequestCheckTransaction($token, $this->getMerchantId());
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getCUrl(),
-                $body
+                url: $this->getCUrl(),
+                data: $body,
+                timeout: $this->getTimeout()
             );
     }
 
@@ -42,12 +44,13 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getProcessingUrl(),
-                [
+                url: $this->getProcessingUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
-                ]
+                ],
+                timeout: $this->getTimeout()
             );
     }
 
@@ -61,13 +64,14 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getProcessingOtpUrl(),
-                [
+                url: $this->getProcessingOtpUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
                     'otp' => $otp,
-                ]
+                ],
+                timeout: $this->getTimeout()
             );
     }
 
@@ -78,11 +82,12 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getCancelUrl(),
-                [
+                url: $this->getCancelUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'type' => 'MERCHANT_PAYMENT'
-                ]
+                ],
+                timeout: $this->getTimeout()
             );
     }
 }

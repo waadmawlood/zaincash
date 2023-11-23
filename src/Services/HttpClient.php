@@ -10,10 +10,12 @@ class HttpClient
     /**
      * @return \Psr\Http\Message\ResponseInterface|\Illuminate\Http\Client\Response|array
      */
-    public function httpPost(string $url, array $data = [], array $headers = []): mixed
+    public function httpPost(string $url, array $data = [], array $headers = [], $timeout = 10): mixed
     {
+        set_time_limit($timeout);
+        
         try {
-            $response = Http::timeout(10)->withHeaders($headers)->asForm()->post($url, $data);
+            $response = Http::timeout($timeout)->withHeaders($headers)->asForm()->post($url, $data);
             return $response;
         } catch (RequestException $e) {
             return [

@@ -31,7 +31,8 @@ abstract class BaseZainCash
         protected $processingOtpUrl = null,
         protected $cancelUrl = null,
         protected $transactionID = null,
-        protected $isReturnArray = false
+        protected $isReturnArray = false,
+        protected $timeout = null
     ) {
         if ($orderId) {
             $this->orderId = $this->getConfig("prefix_order_id") . $orderId;
