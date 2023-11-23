@@ -32,14 +32,14 @@ class ZainCash extends BaseZainCash
 
         // Creates a transaction HTTP client using the provided token.
         $response = $this->createTransactionHttpClient($token);
-
+        
         // Check if the response is not 200
-        if ($response->getStatusCode() !== 200) {
+        if (!$response->ok()) {
             throw new RequestException($response);
         }
 
         // Parse the response to Object StdClass
-        $parseResponse = json_decode($response->getBody()->getContents());
+        $parseResponse = json_decode($response->body());
 
         // Check if the response has error
         $this->getCheckResponseId($parseResponse);
@@ -49,7 +49,7 @@ class ZainCash extends BaseZainCash
         return $this->getIsRedirect() ?
             redirect()->away($this->getRUrl() . $transactionID) :
             ($this->getIsReturnArray() ?
-                json_decode(json_encode($parseResponse), true) :
+                $this->jsonDecodeObject($parseResponse, true) :
                 $parseResponse);
     }
 
@@ -72,12 +72,12 @@ class ZainCash extends BaseZainCash
         $response = $this->sendRequestCheckTransaction($token);
 
         // Check if the response is not success
-        if ($response->getStatusCode() !== 200) {
+        if (!$response->ok()) {
             throw new RequestException($response);
         }
 
         // Parse the response to Object StdClass or Array
-        $parseResponse = json_decode($response->getBody()->getContents(), $this->getIsReturnArray());
+        $parseResponse = json_decode($response->body(), $this->getIsReturnArray());
 
         return $parseResponse;
     }
@@ -106,12 +106,12 @@ class ZainCash extends BaseZainCash
         $response = $this->sendRequestProcessingTransaction($phonenumber, $pin);
 
         // Check if the response is not success
-        if ($response->getStatusCode() !== 200) {
+        if (!$response->ok()) {
             throw new RequestException($response);
         }
 
         // Parse the response to Object StdClass or Array
-        $parseResponse = json_decode($response->getBody()->getContents(), $this->getIsReturnArray());
+        $parseResponse = json_decode($response->body(), $this->getIsReturnArray());
 
         return $parseResponse;
     }
@@ -141,12 +141,12 @@ class ZainCash extends BaseZainCash
         $response = $this->sendRequestPayTransaction($phonenumber, $pin, $otp);
 
         // Check if the response is not success
-        if ($response->getStatusCode() !== 200) {
+        if (!$response->ok()) {
             throw new RequestException($response);
         }
 
         // Parse the response to Object StdClass or Array
-        $parseResponse =  json_decode($response->getBody()->getContents(), $this->getIsReturnArray());
+        $parseResponse =  json_decode($response->body(), $this->getIsReturnArray());
 
         return $parseResponse;
     }
@@ -169,12 +169,12 @@ class ZainCash extends BaseZainCash
         $response = $this->sendRequestCancelTransaction();
 
         // Check if the response is not success
-        if ($response->getStatusCode() !== 200) {
+        if (!$response->ok()) {
             throw new RequestException($response);
         }
 
         // Parse the response to Object StdClass or Array
-        $parseResponse =  json_decode($response->getBody()->getContents(), $this->getIsReturnArray());
+        $parseResponse =  json_decode($response->body(), $this->getIsReturnArray());
 
         return $parseResponse;
     }

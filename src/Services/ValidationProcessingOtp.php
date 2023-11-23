@@ -15,9 +15,8 @@ class ValidationProcessingOtp
      * @param string $pin
      * @param string $otp
      * @param string|null $lang
-     * @return mixed
      */
-    public function validator($transactionID, $phonenumber, $pin, $otp, $lang = null)
+    public function validator($transactionID, $phonenumber, $pin, $otp, $lang = null): mixed
     {
         $this->lang = $lang;
         if (blank($lang))
@@ -37,7 +36,7 @@ class ValidationProcessingOtp
         return $this->prepareOutput(false);
     }
 
-    private function validationRules()
+    private function validationRules(): array
     {
         return [
             "id" => ["required", new Hexadecimal],
@@ -47,7 +46,7 @@ class ValidationProcessingOtp
         ];
     }
 
-    private function validationMessages()
+    private function validationMessages(): array
     {
         return [
             "id.required" => trans('zaincash::zaincash.id_required', [], $this->lang),
@@ -60,7 +59,7 @@ class ValidationProcessingOtp
         ];
     }
 
-    private function prepareOutput(bool $isError, string $message = "Successfull")
+    private function prepareOutput(bool $isError, string $message = "Successfull"): mixed
     {
         return json_decode(json_encode(["error" => $isError, "message" => $message]), false);
     }

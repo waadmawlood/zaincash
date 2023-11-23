@@ -10,13 +10,8 @@ class JWT
 {
     /**
      * Encode a JWT
-     *
-     * @param array $data
-     * @param string $secret
-     * @param string $alg
-     * @return string
      */
-    public function encode(array $data, string $secret, string $alg = 'HS256')
+    public function encode(array $data, string $secret, string $alg = 'HS256'): string
     {
         // Encode the header
         $header = json_encode(['typ' => 'JWT', 'alg' => $alg]);

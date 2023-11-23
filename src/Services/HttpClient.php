@@ -2,28 +2,20 @@
 
 namespace Waad\ZainCash\Services;
 
-use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Http;
 
 class HttpClient
 {
     /**
-     * @param string $url
-     * @param array $data
-     * @param array $headers
      * @return \Psr\Http\Message\ResponseInterface|\Illuminate\Http\Client\Response|array
      */
-    public function httpPost(string $url, array $data = [], array $headers = [])
+    public function httpPost(string $url, array $data = [], array $headers = [], $timeout = 10): mixed
     {
+        set_time_limit($timeout);
+        
         try {
-
-            $client = new Client();
-
-            $response = $client->post($url, [
-                'headers' => $headers,
-                'form_params' => $data
-            ]);
-
+            $response = Http::timeout($timeout)->withHeaders($headers)->asForm()->post($url, $data);
             return $response;
         } catch (RequestException $e) {
             return [

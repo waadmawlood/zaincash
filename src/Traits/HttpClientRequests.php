@@ -14,11 +14,9 @@ trait HttpClientRequests
 
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getTUrl(),
-                $body,
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                url: $this->getTUrl(),
+                data: $body,
+                timeout: $this->getTimeout()
             );
     }
 
@@ -31,11 +29,9 @@ trait HttpClientRequests
         $body = $this->bodyPostRequestCheckTransaction($token, $this->getMerchantId());
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getCUrl(),
-                $body,
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                url: $this->getCUrl(),
+                data: $body,
+                timeout: $this->getTimeout()
             );
     }
 
@@ -48,15 +44,13 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getProcessingUrl(),
-                [
+                url: $this->getProcessingUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
                 ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                timeout: $this->getTimeout()
             );
     }
 
@@ -70,16 +64,14 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getProcessingOtpUrl(),
-                [
+                url: $this->getProcessingOtpUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
                     'otp' => $otp,
                 ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                timeout: $this->getTimeout()
             );
     }
 
@@ -90,14 +82,12 @@ trait HttpClientRequests
     {
         return app(\Waad\ZainCash\Services\HttpClient::class)
             ->httpPost(
-                $this->getCancelUrl(),
-                [
+                url: $this->getCancelUrl(),
+                data: [
                     'id' => $this->getTransactionID(),
                     'type' => 'MERCHANT_PAYMENT'
                 ],
-                [
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ]
+                timeout: $this->getTimeout()
             );
     }
 }

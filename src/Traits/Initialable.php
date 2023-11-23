@@ -5,11 +5,9 @@ namespace Waad\ZainCash\Traits;
 trait Initialable
 {
     /**
-     * @param bool|null $checkTransaction
      * @throws \Exception
-     * @return void
      */
-    protected function initial()
+    protected function initial(): void
     {
         // Set the isTest
         if (is_null($this->getIsTest())) {
@@ -46,10 +44,23 @@ trait Initialable
             $this->setIsRedirect($this->getConfig("is_redirect"));
         }
 
+        // Set the timeout request.
+        if (is_null($this->getTimeout())) {
+            $this->setTimeout($this->getConfig("timeout"));
+        }
+
+        // Set the URLs.
+        $this->initailUrls();
+    }
+
+    protected function initailUrls(bool $force = false): void
+    {
         // Set the base URL.
-        if ($this->getIsTest()) {
+        if (($this->getIsTest() && blank($this->getBaseUrl())) || ($this->getIsTest() && $force)) {
             $this->setBaseUrl($this->getConfig("test_url"));
-        } else {
+        } 
+        
+        if ((!$this->getIsTest() && blank($this->getBaseUrl())) || (!$this->getIsTest() && $force)) {
             $this->setBaseUrl($this->getConfig("live_url"));
         }
 
@@ -59,21 +70,20 @@ trait Initialable
         }
 
         // Set the URLs.
-        $this->setTUrl($this->getBaseUrl() . "transaction/init");
-        $this->setCUrl($this->getBaseUrl() . "transaction/get");
-        $this->setRUrl($this->getBaseUrl() . "transaction/pay?id=");
-        $this->setProcessingUrl($this->getBaseUrl() . "transaction/processing");
-        $this->setProcessingOtpUrl($this->getBaseUrl() . "transaction/processingOTP?type=MERCHANT_PAYMENT");
-        $this->setCancelUrl($this->getBaseUrl() . "transaction/cancel");
+        if ($force || blank($this->getTUrl())) $this->setTUrl($this->getBaseUrl() . "transaction/init");
+        if ($force || blank($this->getCUrl())) $this->setCUrl($this->getBaseUrl() . "transaction/get");
+        if ($force || blank($this->getRUrl())) $this->setRUrl($this->getBaseUrl() . "transaction/pay?id=");
+        if ($force || blank($this->getProcessingUrl())) $this->setProcessingUrl($this->getBaseUrl() . "transaction/processing");
+        if ($force || blank($this->getProcessingOtpUrl())) $this->setProcessingOtpUrl($this->getBaseUrl() . "transaction/processingOTP?type=MERCHANT_PAYMENT");
+        if ($force || blank($this->getCancelUrl())) $this->setCancelUrl($this->getBaseUrl() . "transaction/cancel");
     }
 
     /**
      * Validation Create Request
      *
      * @throws \Exception
-     * @return void
      */
-    public function validationCreateRequest()
+    public function validationCreateRequest(): void
     {
         $validator = app(\Waad\ZainCash\Services\Validations::class)->validator(
             $this->getAmount(),
@@ -92,12 +102,9 @@ trait Initialable
     /**
      * Validation Processing Step
      *
-     * @param string $phonenumber
-     * @param string $pin
      * @throws \Exception
-     * @return void
      */
-    public function validationProcessing(string $phonenumber, string $pin)
+    public function validationProcessing(string $phonenumber, string $pin): void
     {
         $validator = app(\Waad\ZainCash\Services\ValidationProcessing::class)->validator(
             $this->getTransactionID(),
@@ -114,13 +121,9 @@ trait Initialable
     /**
      * Validation Processing OTP Step
      *
-     * @param string $phonenumber
-     * @param string $pin
-     * @param string $otp
      * @throws \Exception
-     * @return void
      */
-    public function validationProcessingOtp(string $phonenumber, string $pin, string $otp)
+    public function validationProcessingOtp(string $phonenumber, string $pin, string $otp): void
     {
         $validator = app(\Waad\ZainCash\Services\ValidationProcessingOtp::class)->validator(
             $this->getTransactionID(),

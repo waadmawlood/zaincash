@@ -4,345 +4,226 @@ namespace Waad\ZainCash\Traits;
 
 trait getSetAttributes
 {
-    /**
-     * @return int|float|null
-     */
-    public function getAmount()
+    public function getAmount(): int|float|null
     {
         return $this->amount;
     }
 
-    /**
-     * @param int|float $amount
-     * @return self
-     */
-    public function setAmount($amount)
+    public function setAmount(int|float $amount): self
     {
         $this->amount = $amount;
         return $this;
     }
 
-    /**
-     * @return int|float|null
-     */
-    public function getMinAmount()
+    public function getMinAmount(): int|float|null
     {
         return $this->minAmount;
     }
 
-    /**
-     * @param int|float $minAmount 
-     * @return self
-     */
-    public function setMinAmount($minAmount)
+    public function setMinAmount(int|float $minAmount): self
     {
         $this->minAmount = $minAmount;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getServiceType()
+    public function getServiceType(): string|null
     {
         return $this->serviceType;
     }
 
-    /**
-     * @param string $serviceType
-     * @return self
-     */
-    public function setServiceType($serviceType)
+    public function setServiceType(string $serviceType): self
     {
         $this->serviceType = $serviceType;
         return $this;
     }
 
-    /**
-     * @return string|int|float|null
-     */
-    public function getOrderId()
+    public function getOrderId(): string|null
     {
         return $this->orderId;
     }
 
-    /**
-     * @param string|int|float $orderId
-     * @return self
-     */
-    public function setOrderId($orderId)
+    public function setOrderId(string $orderId): self
     {
         $this->orderId = $this->getConfig("prefix_order_id") . $orderId;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getMsisdn()
+    public function getMsisdn(): string|null
     {
         return $this->msisdn;
     }
 
-    /**
-     * @param string $msisdn
-     * @return self
-     */
-    public function setMsisdn($msisdn)
+    public function setMsisdn(string $msisdn): self
     {
         $this->msisdn = $msisdn;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getSecret()
+    public function getSecret(): string|null
     {
         return $this->secret;
     }
 
-    /**
-     * @param string $secret
-     * @return self
-     */
-    public function setSecret($secret)
+    public function setSecret(string $secret): self
     {
         $this->secret = $secret;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getMerchantId()
+    public function getMerchantId(): string|null
     {
         return $this->merchantId;
     }
 
-    /**
-     * @param string $merchantId
-     * @return self
-     */
-    public function setMerchantId($merchantId)
+    public function setMerchantId(string $merchantId): self
     {
         $this->merchantId = $merchantId;
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
-    public function getIsTest()
+    public function getIsTest(): bool|null
     {
         return $this->isTest;
     }
 
-    /**
-     * @param bool $isTest
-     * @return self
-     */
-    public function setIsTest($isTest)
+    public function setIsTest(bool $isTest): self
     {
         $this->isTest = $isTest;
+        $this->initailUrls(true);
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getLanguage()
+    public function getLanguage(): string|null
     {
         return $this->language;
     }
 
-    /**
-     * @param string $language
-     * @return self
-     */
-    public function setLanguage($language)
+    public function setLanguage(string $language): self
     {
         $this->language = $language;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getBaseUrl()
+    public function getBaseUrl(): string|null
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @param string $baseUrl
-     * @return self
-     */
-    public function setBaseUrl($baseUrl)
+    public function setBaseUrl($baseUrl): self
     {
         $this->baseUrl = $baseUrl;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function getIsRedirect()
+    public function getIsRedirect(): bool|null
     {
         return $this->isRedirect;
     }
 
-    /**
-     * @param bool  $isRedirect
-     * @return self
-     */
-    public function setIsRedirect($isRedirect)
+    public function setIsRedirect(bool $isRedirect): self
     {
         $this->isRedirect = $isRedirect;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getTUrl()
+    public function getTUrl(): string|null
     {
         return $this->tUrl;
     }
 
-    /**
-     * @param string $tUrl
-     * @return self
-     */
-    public function setTUrl($tUrl)
+    public function setTUrl(string $tUrl): self
     {
         $this->tUrl = $tUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCUrl()
+    public function getCUrl(): string|null
     {
         return $this->cUrl;
     }
 
-    /**
-     * @param string $cUrl
-     * @return self
-     */
-    public function setCUrl($cUrl)
+    public function setCUrl(string $cUrl): self
     {
         $this->cUrl = $cUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getRUrl()
+    public function getRUrl(): string|null
     {
         return $this->rUrl;
     }
 
-    /**
-     * @param string $rUrl
-     * @return self
-     */
-    public function setRUrl($rUrl)
+    public function setRUrl(string $rUrl): self
     {
         $this->rUrl = $rUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getProcessingUrl()
+    
+    public function getProcessingUrl(): string|null
     {
         return $this->processingUrl;
     }
 
-    /**
-     * @param string $processingUrl
-     * @return self
-     */
-    public function setProcessingUrl($processingUrl)
+    public function setProcessingUrl(string $processingUrl): self
     {
         $this->processingUrl = $processingUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getProcessingOtpUrl()
+    
+    public function getProcessingOtpUrl(): string|null
     {
         return $this->processingOtpUrl;
     }
 
-    /**
-     * @param string $processingOtpUrl
-     * @return self
-     */
-    public function setProcessingOtpUrl($processingOtpUrl)
+    public function setProcessingOtpUrl(string $processingOtpUrl): self
     {
         $this->processingOtpUrl = $processingOtpUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCancelUrl()
+    public function getCancelUrl(): string|null
     {
         return $this->cancelUrl;
     }
 
-    /**
-     * @param string $cancelUrl
-     * @return self
-     */
-    public function setCancelUrl($cancelUrl)
+    public function setCancelUrl(string $cancelUrl): self
     {
         $this->cancelUrl = $cancelUrl;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getTransactionID()
+    public function getTransactionID(): string|null
     {
         return $this->transactionID;
     }
 
-    /**
-     * @param string|null $transactionID
-     * @return self
-     */
-    public function setTransactionID($transactionID = null)
+    public function setTransactionID(?string $transactionID = null): self
     {
         $this->transactionID = $transactionID;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function getIsReturnArray()
+    public function getIsReturnArray(): bool
     {
         return $this->isReturnArray;
     }
 
-    /**
-     * @param bool $isReturnArray
-     * @return self
-     */
-    public function setIsReturnArray($isReturnArray = false)
+    public function setIsReturnArray(bool $isReturnArray = false): self
     {
         $this->isReturnArray = $isReturnArray;
+        return $this;
+    }
+
+    public function getTimeout(): int|null
+    {
+        return $this->timeout;
+    }
+
+    public function setTimeout(int $timeout): self
+    {
+        $this->timeout = $timeout;
         return $this;
     }
 }

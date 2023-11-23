@@ -1,7 +1,7 @@
 # ZainCash Integration API Laravel Package
 
 <p>
-<a href="https://zaincash.iq" target="_blank"><img src="example/sturcture_zaincash_package.svg"></a>
+<img src="example/sturcture_zaincash_package.png">
 </p>
 
 This is a Laravel package to integrate ZainCash payment gateway API. For local financial transactions in Iraqi dinars inside Iraq. This package is based on the official ZainCash API documentation. You can find the official documentation [(https://docs.zaincash.iq)](https://docs.zaincash.iq).
@@ -15,7 +15,6 @@ This is a Laravel package to integrate ZainCash payment gateway API. For local f
 ## 🎀 Requirements
 | Package Version | Laravel Version | PHP Version  |
 |-----------------|-----------------|--------------|
-| 5.5.x           | 5.5.x           | 7.0+         |
 | 6.x             | 6.x             | 7.2+         |
 | 7.x             | 7.x             | 7.2.5+       |
 | 8.x             | 8.x             | 7.3+ \| 8.0+ |
@@ -69,6 +68,7 @@ update config zaincash in `config/zaincash.php` or from `.env` file
 | prefix_order_id       | string | wa3d_ | Prefix for the order ID. |
 | is_redirect           | bool   | false   | Specify whether or not to redirect to the ZainCash payment page. If false, ZainCash returns a Transaction ID to the backend. If true, redirection after the request. |
 | min_amount            | int    | 1000  | Set the minimum amount for a valid transaction in Iraqi Dinar (IQD). Transactions with amounts less than this value will be considered invalid.  |
+| timeout               | int    | 10    | Set the timeout for the request in seconds. |
 
 
 <br>
@@ -85,6 +85,7 @@ ZAINCASH_IS_REDIRECT=false                     # optional default false
 ZAINCASH_MIN_AMOUNT=1000                       # optional default 1000
 ZAINCASH_TEST_URL=https://test.zaincash.iq/    # optional
 ZAINCASH_LIVE_URL=https://api.zaincash.iq/     # optional
+ZAINCASH_TIMEOUT=10                            # optional
 ```
 
 
@@ -211,6 +212,7 @@ class PaymentController extends Controller
 | processingUrl     |🔴| string-null      | `getProcessingUrl()`                  | `setProcessingUrl($processingUrl)`     | -        |
 | processingOtpUrl  |🔴| string-null      | `getProcessingOtpUrl()`               | `setProcessingOtpUrl($processingOtpUrl)` | -      |
 | cancelUrl         |🔴| string-null      | `getCancelUrl()`                      | `setCancelUrl($cancelUrl)`             | -        |
+| timeout           |🔴| int-null         | `getTimeout()`                        | `setTimeout($timeout)`                 | -        |
 
 ⚠️ `Important` column means that this attribute is constantly used and has no default value. On the contrary, we can change it, but it will take the default value from `config/zaincash.php`.
 
@@ -348,6 +350,14 @@ Response Example dependent by status:
   },
   ...
   "status": "completed", // <--- status completed after complete (Payment)
+  "sofOwnerId": 18482,
+    "traveldiscount": "1000",
+    "from": "9647802999569",
+    "onCustomerFees": "50000000",
+    "onMerchantFees": "0",
+    "totalFees": 500,
+    "operationDate": "2023-11-22T18:23:52.270Z",
+    "operationId": "1173300",
   ...
 }
 *****************************************
@@ -423,7 +433,6 @@ $processingDetails = $zainCashPayment->processingTransaction("9647802999569", '1
 Response Example dependent by success:
 
 ```json
-response
 {
   "success": 1,
   "transactionid": "655883cd0227c4d2ec58f712",
@@ -563,7 +572,7 @@ Response Example dependent by success:
 
 <div>
 <p>
-<a href="https://zaincash.iq" target="_blank"><img src="example/waad_logo.svg" width="300" style="border: 1px solid orange"></a>
+<img src="example/waad_logo.svg" width="300" style="border: 1px solid orange">
 </p>
 <p>
 Author: <a href="mailto:waad_mawlood@outlook.com">Waad Mawlood</a>

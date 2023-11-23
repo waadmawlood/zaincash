@@ -12,50 +12,31 @@ abstract class BaseZainCash
     use getSetAttributes;
     use HttpClientRequests;
 
-    protected $amount;
-    protected $minAmount;
-    protected $serviceType;
-    protected $orderId;
-    protected $msisdn;
-    protected $secret;
-    protected $merchantId;
-    protected $isTest;
-    protected $language;
-    protected $baseUrl;
-    protected $isRedirect;
-    protected $tUrl;
-    protected $cUrl;
-    protected $rUrl;
-    protected $processingUrl;
-    protected $processingOtpUrl;
-    protected $cancelUrl;
-    protected $transactionID;
-    protected $isReturnArray = false;
-
     public function __construct(
-        $amount = null,
-        $serviceType = null,
-        $orderId = null,
-        $msisdn = null,
-        $secret = null,
-        $merchantId = null,
-        $isTest = null,
-        $language = null,
-        $baseUrl = null
+        protected $amount = null,
+        protected $minAmount = null,
+        protected $serviceType = null,
+        protected $orderId = null,
+        protected $msisdn = null,
+        protected $secret = null,
+        protected $merchantId = null,
+        protected $isTest = null,
+        protected $language = null,
+        protected $baseUrl = null,
+        protected $isRedirect = null,
+        protected $tUrl = null,
+        protected $cUrl = null,
+        protected $rUrl = null,
+        protected $processingUrl = null,
+        protected $processingOtpUrl = null,
+        protected $cancelUrl = null,
+        protected $transactionID = null,
+        protected $isReturnArray = false,
+        protected $timeout = null
     ) {
-        $this->amount = $amount;
-        $this->serviceType = $serviceType;
-
-        if($orderId) {
+        if ($orderId) {
             $this->orderId = $this->getConfig("prefix_order_id") . $orderId;
         }
-
-        $this->msisdn = $msisdn;
-        $this->secret = $secret;
-        $this->merchantId = $merchantId;
-        $this->isTest = $isTest;
-        $this->language = $language;
-        $this->baseUrl = $baseUrl;
 
         $this->initial();
     }
@@ -63,9 +44,8 @@ abstract class BaseZainCash
     protected function bodyPostRequest($token, $language, $merchantId)
     {
         return [
-            'lang' => $language,
-            'merchantId' => $merchantId,
-            'token' => urlencode($token),
+            'lang' => $language, 
+            ...$this->bodyPostRequestCheckTransaction($token, $merchantId)
         ];
     }
 
@@ -92,7 +72,7 @@ abstract class BaseZainCash
         return app(\Waad\ZainCash\Services\JWT::class)->encode($data, $secret);
     }
 
-    protected function createTokenCheck($transactionID, $msisdn, $secret)
+    protected function createTokenCheck(string $transactionID, string $msisdn, string $secret)
     {
         $data = [
             "id" => $transactionID,
@@ -109,14 +89,14 @@ abstract class BaseZainCash
         return config("zaincash.$arrtibute", $default);
     }
 
-    protected function jsonDecodeObject($array)
+    protected function jsonDecodeObject($array, $isReturnArray = false)
     {
-        return json_decode(json_encode($array), FALSE);
+        return json_decode(json_encode($array), $isReturnArray);
     }
 
     protected function getCheckResponseId($parseResponse)
     {
-        if (!isset($parseResponse->id)) {
+        if (blank($parseResponse->id ?? null)) {
             throw new \Exception($parseResponse->err->msg);
         }
     }
