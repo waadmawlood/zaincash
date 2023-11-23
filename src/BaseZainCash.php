@@ -43,7 +43,10 @@ abstract class BaseZainCash
 
     protected function bodyPostRequest($token, $language, $merchantId)
     {
-        return array_merge(['lang' => $language], $this->bodyPostRequestCheckTransaction($token, $merchantId));
+        return [
+            'lang' => $language, 
+            ...$this->bodyPostRequestCheckTransaction($token, $merchantId)
+        ];
     }
 
     protected function bodyPostRequestCheckTransaction($token, $merchantId)

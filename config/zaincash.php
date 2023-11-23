@@ -102,6 +102,7 @@ return [
     |
     | Set the timeout for the request to ZainCash's API.
     | The default value is 10 seconds.
+    | make it 0 (zero) for unlimited.
     */
     'timeout' => env('ZAINCASH_TIMEOUT', 10),
 ];
