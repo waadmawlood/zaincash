@@ -16,7 +16,8 @@ trait HttpClientRequests
             ->httpPost(
                 url: $this->getTUrl(),
                 data: $body,
-                timeout: $this->getTimeout()
+                timeout: $this->getTimeout(),
+                verify: $this->getVerifySsl()
             );
     }
 
@@ -31,7 +32,8 @@ trait HttpClientRequests
             ->httpPost(
                 url: $this->getCUrl(),
                 data: $body,
-                timeout: $this->getTimeout()
+                timeout: $this->getTimeout(),
+                verify: $this->getVerifySsl()
             );
     }
 
@@ -50,7 +52,8 @@ trait HttpClientRequests
                     'phonenumber' => $phonenumber,
                     'pin' => $pin,
                 ],
-                timeout: $this->getTimeout()
+                timeout: $this->getTimeout(),
+                verify: $this->getVerifySsl()
             );
     }
 
@@ -71,7 +74,8 @@ trait HttpClientRequests
                     'pin' => $pin,
                     'otp' => $otp,
                 ],
-                timeout: $this->getTimeout()
+                timeout: $this->getTimeout(),
+                verify: $this->getVerifySsl()
             );
     }
 
@@ -87,7 +91,8 @@ trait HttpClientRequests
                     'id' => $this->getTransactionID(),
                     'type' => 'MERCHANT_PAYMENT'
                 ],
-                timeout: $this->getTimeout()
+                timeout: $this->getTimeout(),
+                verify: $this->getVerifySsl()
             );
     }
 }
