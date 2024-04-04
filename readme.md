@@ -20,6 +20,7 @@ This is a Laravel package to integrate ZainCash payment gateway API. For local f
 | 8.x             | 8.x             | 7.3+ \| 8.0+ |
 | 9.x             | 9.x             | 8.0+         |
 | 10.x            | 10.x            | 8.1+         |
+| 11.x            | 11.x            | 8.2+         |
 
 
 
@@ -190,7 +191,7 @@ class PaymentController extends Controller
 <br>
 
 
-####- `Getter` And `Setter`  Attributes Table
+#### - `Getter` And `Setter`  Attributes Table
 
 
 | Attribute         |Important| Type             | Getter                                | Setter                                 | Default  |
