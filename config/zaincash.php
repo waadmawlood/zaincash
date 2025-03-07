@@ -93,7 +93,7 @@ return [
     | Set the minimum amount for a valid transaction in Iraqi Dinar (IQD).
     | Transactions with amounts less than this value will be considered invalid.
     */
-    'min_amount' => env('ZAINCASH_MIN_AMOUNT', 1000),
+    'min_amount' => env('ZAINCASH_MIN_AMOUNT', 250),
 
     /*
     |--------------------------------------------------------------------------
