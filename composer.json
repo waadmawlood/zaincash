@@ -1,6 +1,6 @@
 {
     "name": "waad/zaincash",
-    "description": "ZainCash payment Integration Gateway package API laravel",
+    "description": "ZainCash payment Integration Gateway package API for Laravel",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -27,7 +27,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.0"
+        "laravel/framework": "^12.0"
     },
     "autoload": {
         "psr-4": {

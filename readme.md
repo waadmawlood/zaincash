@@ -21,7 +21,7 @@ This is a Laravel package to integrate ZainCash payment gateway API. For local f
 | 9.x             | 9.x             | 8.0+         |
 | 10.x            | 10.x            | 8.1+         |
 | 11.x            | 11.x            | 8.2+         |
-
+| 12.x            | 12.x            | 8.2+         |
 
 
 ## 📌 Installation
@@ -68,7 +68,7 @@ update config zaincash in `config/zaincash.php` or from `.env` file
 | language              | string | ar | Set the language for the ZainCash payment page. Use 'ar' for Arabic or 'en' for English. |
 | prefix_order_id       | string | wa3d_ | Prefix for the order ID. |
 | is_redirect           | bool   | false   | Specify whether or not to redirect to the ZainCash payment page. If false, ZainCash returns a Transaction ID to the backend. If true, redirection after the request. |
-| min_amount            | int    | 1000  | Set the minimum amount for a valid transaction in Iraqi Dinar (IQD). Transactions with amounts less than this value will be considered invalid.  |
+| min_amount            | int    | 250  | Set the minimum amount for a valid transaction in Iraqi Dinar (IQD). Transactions with amounts less than this value will be considered invalid.  |
 | timeout               | int    | 10    | Set the timeout for the request in seconds. |
 | verify_ssl | bool | true | Set the verify SSL for the request to ZainCash's API. |
 
@@ -84,7 +84,7 @@ ZAINCASH_TEST=true                             # default true
 ZAINCASH_PREFIX_ORDER_ID=wa3d_                 # default wa3d_
 ZAINCASH_LANGUAGE=ar                           # optional default ar
 ZAINCASH_IS_REDIRECT=false                     # optional default false
-ZAINCASH_MIN_AMOUNT=1000                       # optional default 1000
+ZAINCASH_MIN_AMOUNT=250                        # optional default 250
 ZAINCASH_TEST_URL=https://test.zaincash.iq/    # optional
 ZAINCASH_LIVE_URL=https://api.zaincash.iq/     # optional
 ZAINCASH_TIMEOUT=10                            # optional
